@@ -110,7 +110,8 @@ NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapR
 {
     CGRect frame = notificationRect();
     BOOL isPortrait = (frame.size.width == [UIScreen mainScreen].bounds.size.width);
-    
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+
     if (isPortrait)
     {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -118,7 +119,7 @@ NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapR
             frame.size.width = kMPNotificationIPadWidth;
         }
         
-        if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortraitUpsideDown)
+        if (orientation == UIDeviceOrientationPortraitUpsideDown)
         {
             frame.origin.y = [UIScreen mainScreen].bounds.size.height - kMPNotificationHeight;
             self.transform = CGAffineTransformMakeRotation(RADIANS(180.0f));
@@ -138,7 +139,7 @@ NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapR
             frame.size.height = kMPNotificationIPadWidth;
         }
         
-        if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
+        if (orientation == UIDeviceOrientationLandscapeLeft)
         {
             frame.origin.x = [UIScreen mainScreen].bounds.size.width - frame.size.width;
             self.transform = CGAffineTransformMakeRotation(RADIANS(90.0f));
