@@ -13,6 +13,7 @@
 #define kMPNotificationIPadWidth 480.0f
 #define RADIANS(deg) ((deg) * M_PI / 180.0f)
 
+
 static NSMutableDictionary * _registeredTypes;
 
 static CGRect notificationRect()
@@ -37,6 +38,7 @@ NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapR
 @end
 
 @implementation MPNotificationWindow
+
 
 - (void) dealloc
 {
@@ -169,6 +171,8 @@ NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapR
 static MPNotificationWindow * __notificationWindow = nil;
 static CGFloat const __imagePadding = 8.0f;
 
+static float defaultDetailFontSize = 13.0f;
+
 #pragma mark -
 #pragma mark MPNotificationView
 
@@ -184,6 +188,11 @@ static CGFloat const __imagePadding = 8.0f;
 @end
 
 @implementation MPNotificationView
+
++ (void)setDefaultDetailFontSize:(float)fontSize
+{
+    defaultDetailFontSize = fontSize;
+}
 
 - (void) dealloc
 {
@@ -228,7 +237,7 @@ static CGFloat const __imagePadding = 8.0f;
         _textLabel.backgroundColor = [UIColor clearColor];
         [_contentView addSubview:_textLabel];
         
-        UIFont *detailFont = [UIFont systemFontOfSize:13.0f];
+        UIFont *detailFont = [UIFont systemFontOfSize:defaultDetailFontSize];
         CGRect detailFrame = CGRectMake(CGRectGetMinX(textFrame),
                                         CGRectGetMaxY(textFrame),
                                         notificationWidth - __imagePadding * 2 - CGRectGetMaxX(_imageView.frame),

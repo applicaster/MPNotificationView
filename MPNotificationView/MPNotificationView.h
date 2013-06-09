@@ -58,6 +58,7 @@ typedef void (^MPNotificationSimpleAction)(MPNotificationView * view);
                                    type:(NSString *)type
                           andTouchBlock:(MPNotificationSimpleAction)block;
 
++ (void)setDefaultDetailFontSize:(float)fontSize;
 
 + (void)registerNibNameOrClass:(id)nibNameOrClass
         forNotificationsOfType:(NSString *)type;
