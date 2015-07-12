@@ -13,7 +13,6 @@
 #define kMPNotificationIPadWidth 480.0f
 #define RADIANS(deg) ((deg) * M_PI / 180.0f)
 
-
 static NSMutableDictionary * _registeredTypes;
 
 static CGRect notificationRect()
@@ -27,6 +26,7 @@ static CGRect notificationRect()
 }
 
 NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapReceivedNotification";
+static float defaultDetailFontSize = 13.0f;
 
 #pragma mark MPNotificationWindow
 
@@ -38,7 +38,6 @@ NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapR
 @end
 
 @implementation MPNotificationWindow
-
 
 - (void) dealloc
 {
@@ -112,8 +111,9 @@ NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapR
 {
     CGRect frame = notificationRect();
     BOOL isPortrait = (frame.size.width == [UIScreen mainScreen].bounds.size.width);
+    
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-
+    
     if (isPortrait)
     {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -171,8 +171,6 @@ NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapR
 static MPNotificationWindow * __notificationWindow = nil;
 static CGFloat const __imagePadding = 8.0f;
 
-static float defaultDetailFontSize = 13.0f;
-
 #pragma mark -
 #pragma mark MPNotificationView
 
@@ -188,11 +186,6 @@ static float defaultDetailFontSize = 13.0f;
 @end
 
 @implementation MPNotificationView
-
-+ (void)setDefaultDetailFontSize:(float)fontSize
-{
-    defaultDetailFontSize = fontSize;
-}
 
 - (void) dealloc
 {
@@ -398,7 +391,7 @@ static float defaultDetailFontSize = 13.0f;
         _tapBlock(self);
     }
     
-    if ([_delegate respondsToSelector:@selector(tapReceivedForNotificationView:)])
+    if ([_delegate respondsToSelector:@selector(didTapOnNotificationView:)])
     {
         [_delegate didTapOnNotificationView:self];
     }
@@ -546,6 +539,11 @@ static float defaultDetailFontSize = 13.0f;
     return [[UIImage alloc] initWithCGImage:croppedScreenshot.CGImage
                                       scale:croppedScreenshot.scale
                                 orientation:imageOrientation];
+}
+
++ (void)setDefaultDetailFontSize:(float)fontSize
+{
+    defaultDetailFontSize = fontSize;
 }
 
 @end
