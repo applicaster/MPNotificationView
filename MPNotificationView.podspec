@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "MPNotificationView"
+  s.name         = "MPNotificationView-Applicaster"
   s.version      = "1.1.1"
   s.summary      = "An in-app notification view that mimics the iOS 6 notification views which appear above the status bar."
   s.homepage     = "https://github.com/Moped/MPNotificationView"
