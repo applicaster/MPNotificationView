@@ -5,9 +5,9 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/Moped/MPNotificationView"
   s.license      = 'MIT'
   s.authors      = {"Engin Kurutepe" => "engin@kurutepe.com"}
-  s.source       = { :git => "https://github.com/Moped/MPNotificationView.git", :tag => "1.1.1" }
-  s.platform     = :ios, '4.3'
-  s.source_files = 'MPNotificationView/*.{h,m}', 'OBGradientView/*.{h,m}' 
+  s.source       = { :git => "https://github.com/Moped/MPNotificationView.git", :tag => s.version.to_s }
+  s.platform     = :ios, '8.0'
+  s.source_files = 'MPNotificationView/*.{h,m}', 'OBGradientView/*.{h,m}'
   s.public_header_files = 'MPNotificationView/**/*.h'
   s.requires_arc = true
 end
